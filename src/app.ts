@@ -1,5 +1,5 @@
 import * as express from 'express';
-import errorhandler from './middleware/errorhandler';
+import errorHandler from './middleware/error-handler';
 import { notFound } from 'boom';
 
 const app = express();
@@ -18,6 +18,6 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
   next(notFound()));
 
 // Boom error handler
-app.use(errorhandler);
+app.use(errorHandler);
 
 export default app;
