@@ -1,6 +1,7 @@
 import app from './app';
+import * as config from './config/config';
 
-const port = app.get('port');
+const port = config.runtime.port;
 
 const server = app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port} in ${app.get('env')} mode`);
