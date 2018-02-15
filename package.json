@@ -6,7 +6,8 @@
     "build-ts": "tsc",
     "nodemon": "nodemon",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate" : "migrate-mongo --file ./migrate.config.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   "dependencies": {
     "@types/node": "^8.9.3",
     "boom": "^7.1.1",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "migrate-mongo": "^2.2.1"
   }
 }

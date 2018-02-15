@@ -4,6 +4,6 @@ module.exports = {
     env: process.env.NODE_ENV || 'development',
   },
   mongo: {
-    uri: process.env.MONGO_URI || 'mongodb: //localhost/ts-user-api',
+    uri: process.env.MONGO_URI || 'mongodb://localhost/ts-user-api',
   },
 };
