@@ -28,7 +28,7 @@ module.exports = {
 
 ## Checking if you have already executed all migrations
 ``` sh
-nom run migrate status
+npm run migrate status
 ```
 
 Sample output:
