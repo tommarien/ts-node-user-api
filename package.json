@@ -4,10 +4,9 @@
   "description": "A typescript express user api sample",
   "scripts": {
     "build-ts": "tsc",
-    "nodemon": "nodemon",
+    "nodemon": "nodemon | bunyan",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate" : "migrate-mongo --file ./migrate.config.js"
+    "migrate": "migrate-mongo --file ./migrate.config.js"
   },
   "repository": {
     "type": "git",
@@ -29,8 +28,10 @@
     "typescript": "^2.7.1"
   },
   "dependencies": {
+    "@types/bunyan": "^1.8.4",
     "@types/node": "^8.9.3",
     "boom": "^7.1.1",
+    "bunyan": "^1.8.12",
     "express": "^4.16.2",
     "migrate-mongo": "^2.2.1"
   }
