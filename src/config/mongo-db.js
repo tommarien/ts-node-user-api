@@ -11,10 +11,14 @@ const connect = () => {
     log.error({ err });
   });
 
-  log.info('Connecting to mongo', { uri });
+  log.debug('Connecting', { uri });
   return mongoose.connect(uri)
-    .catch(()=> {
-      log.fatal('Mongo connection failed to initialize')
+    .then(mongoose => {
+      log.info('Connected', { uri });
+      return mongoose;
+    })
+    .catch(() => {
+      log.fatal('Failed to connect')
       process.exit(1);
     });
 }

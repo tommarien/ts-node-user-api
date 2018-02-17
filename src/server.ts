@@ -6,12 +6,25 @@ import mongoDb from './config/mongo-db';
 const log = logFactory('server');
 const { runtime: { port, env } } = config;
 
-log.info('Awaiting mongo connection');
+log.debug('Awaiting mongo connection');
 mongoDb()
   .then(() => {
-    log.info('Connected to MongoDb');
     const server = app.listen(port, () => {
-      log.info(`Server is listening at http://localhost:${port} in ${env} mode`);
-      log.info('Press CTRL-C to stop');
+      log.info('Started', { port, env });
+      log.debug('Press CTRL-C to stop');
+
+      /*
+      * Heroku is sending a SIGTERM when an application is restarted or a downscale event happened
+      * We want to make sure that we don't kill the process as a result of that.
+      * After 30s heroku will send a SIGKILL, which will terminate the process.
+      */
+      process.on('SIGTERM', () => {
+        log.debug('Stopping server due to SIGTERM signal');
+        // This makes sure no new request come in.
+        server.close(() => {
+          log.info('Stopped listening for incoming connections, due to SIGTERM signal');
+          log.info('Awaiting on SIGINT');
+        });
+      });
     });
   });
