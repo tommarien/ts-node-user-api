@@ -6,7 +6,8 @@
     "build-ts": "tsc",
     "nodemon": "nodemon | bunyan",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "migrate": "migrate-mongo --file ./migrate.config.js"
+    "migrate": "migrate-mongo --file ./migrate.config.js",
+    "start": "node ./dist/server.js | bunyan -l warn"
   },
   "repository": {
     "type": "git",

@@ -12,7 +12,7 @@ interface ExpressRequestId {
    * @type {string}
    * @memberof ExpressRequestId
    */
-  id:string,
+  readonly id:string,
 }
 
 declare module "express-request-id";
