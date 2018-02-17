@@ -2,7 +2,7 @@
 
 ## Creating a new migration
 ``` sh
-npm run migrate create 'name of the new migration'
+yarn migrate create 'name of the new migration'
 ```
 
 This will create a new migration according to the timestamp-name_of_the_new_migration.js
@@ -28,7 +28,7 @@ module.exports = {
 
 ## Checking if you have already executed all migrations
 ``` sh
-npm run migrate status
+yarn migrate status
 ```
 
 Sample output:
@@ -44,12 +44,12 @@ In the applied at column you will directly see if the migration has been applied
 
 ## Applying all pending migrations
 ``` sh
-npm run migrate up
+yarn migrate up
 ```
 
 ## Downing the last migration
 ``` sh
-npm run migrate down
+yarn migrate down
 ```
 
 ## More info
