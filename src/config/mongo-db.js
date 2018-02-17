@@ -1,10 +1,9 @@
 import * as mongoose from 'mongoose';
-import * as config from './config';
+import { mongo } from './config';
 import logFactory from '../utility/log-factory';
 
 const log = logFactory('mongo-db');
-config.mongo.poolSize
-const { mongo: { uri, poolSize } } = config;
+const { uri, poolSize } = mongo;
 
 const connect = () => {
   // Setup error listener

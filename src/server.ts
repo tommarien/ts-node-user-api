@@ -1,10 +1,10 @@
 import app from './app';
-import * as config from './config/config';
+import { runtime } from './config/config';
 import logFactory from './utility/log-factory';
 import mongoDb from './config/mongo-db';
 
 const log = logFactory('server');
-const { runtime: { port, env, exitDelay } } = config;
+const { port, env, exitDelay } = runtime;
 
 log.debug('Awaiting mongo connection');
 mongoDb()
