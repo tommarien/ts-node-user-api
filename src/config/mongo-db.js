@@ -3,7 +3,8 @@ import * as config from './config';
 import logFactory from '../utility/log-factory';
 
 const log = logFactory('mongo-db');
-const { mongo: { uri } } = config;
+config.mongo.poolSize
+const { mongo: { uri, poolSize } } = config;
 
 const connect = () => {
   // Setup error listener
@@ -11,8 +12,8 @@ const connect = () => {
     log.error({ err });
   });
 
-  log.debug('Connecting', { uri });
-  return mongoose.connect(uri)
+  log.debug('Connecting', { uri, poolSize });
+  return mongoose.connect(uri, { poolSize: poolSize })
     .then(mongoose => {
       log.info('Connected', { uri });
       return mongoose;

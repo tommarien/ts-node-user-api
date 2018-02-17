@@ -4,7 +4,7 @@ import logFactory from './utility/log-factory';
 import mongoDb from './config/mongo-db';
 
 const log = logFactory('server');
-const { runtime: { port, env } } = config;
+const { runtime: { port, env, exitDelay } } = config;
 
 log.debug('Awaiting mongo connection');
 mongoDb()
@@ -22,13 +22,13 @@ mongoDb()
         log.debug('Stopping server due to SIGTERM signal');
         // This makes sure no new request come in.
         server.close(() => {
-          log.info('Stopped listening, awaiting delay or CTRL-C', { delay: 5000 });
+          log.info('Stopped listening, awaiting delay or CTRL-C', { exitDelay });
 
           setTimeout(
             () => {
               process.exit(0);
             },
-            5000,
+            exitDelay,
           );
         });
       });
