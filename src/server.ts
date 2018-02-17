@@ -8,7 +8,7 @@ const { runtime: { port, env } } = config;
 
 log.debug('Awaiting mongo connection');
 mongoDb()
-  .then(() => {
+  .then((mongoose) => {
     const server = app.listen(port, () => {
       log.info('Started', { port, env });
       log.debug('Press CTRL-C to stop');
@@ -22,8 +22,14 @@ mongoDb()
         log.debug('Stopping server due to SIGTERM signal');
         // This makes sure no new request come in.
         server.close(() => {
-          log.info('Stopped listening for incoming connections, due to SIGTERM signal');
-          log.info('Awaiting on SIGINT');
+          log.info('Stopped listening, awaiting delay or CTRL-C', { delay: 5000 });
+
+          setTimeout(
+            () => {
+              process.exit(0);
+            },
+            5000,
+          );
         });
       });
     });
