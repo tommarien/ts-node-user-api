@@ -4,7 +4,7 @@
   "description": "A typescript express user api sample",
   "scripts": {
     "build-ts": "tsc",
-    "nodemon": "nodemon | bunyan",
+    "nodemon": "nodemon | bunyan -l debug",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "migrate": "migrate-mongo --file ./migrate.config.js",
     "start": "node ./dist/server.js | bunyan -l warn"
@@ -23,6 +23,7 @@
     "@types/boom": "^7.1.1",
     "@types/bunyan": "^1.8.4",
     "@types/express": "^4.11.1",
+    "@types/mongoose": "^5.0.2",
     "@types/node": "^8.9.4",
     "nodemon": "^1.14.12",
     "ts-node": "^4.1.0",
@@ -35,6 +36,7 @@
     "bunyan": "^1.8.12",
     "express": "^4.16.2",
     "express-request-id": "^1.4.0",
-    "migrate-mongo": "^2.2.1"
+    "migrate-mongo": "^2.2.1",
+    "mongoose": "^5.0.6"
   }
 }
