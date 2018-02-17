@@ -33,6 +33,7 @@
     "boom": "^7.1.1",
     "bunyan": "^1.8.12",
     "express": "^4.16.2",
+    "express-request-id": "^1.4.0",
     "migrate-mongo": "^2.2.1"
   }
 }
