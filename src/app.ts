@@ -18,7 +18,7 @@ app.get('/', (req: express.Request, res: express.Response) => {
 
 // Generic catch all route
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) =>
-  next(new Error('Hello There')));
+  next(notFound()));
 
 // Boom error handler
 app.use(errorHandler);
