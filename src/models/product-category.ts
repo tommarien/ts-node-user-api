@@ -1,5 +1,5 @@
 import { Schema, Document, model, SchemaTimestampsConfig } from 'mongoose';
-import { TimeStamps } from './timestamps';
+import { Auditable } from './auditable';
 
 const schema = new Schema(
   {
@@ -14,7 +14,7 @@ const schema = new Schema(
   { timestamps: true },
 );
 
-export interface ProductCategoryModel extends Document, TimeStamps {
+export interface ProductCategoryModel extends Document, Auditable {
 
   /**
    * The code of the category, unique (uppercase)

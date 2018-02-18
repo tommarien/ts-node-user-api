@@ -1,4 +1,4 @@
-export interface TimeStamps {
+export interface Auditable {
   createdAt: Date;
   updatedAt: Date;
 }

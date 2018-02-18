@@ -7,7 +7,6 @@ declare namespace Configuration {
   interface RuntimeConfiguration {
     env: string;
     port: string;
-    exitDelay: number;
   }
 
   interface static {
