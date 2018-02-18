@@ -3,6 +3,7 @@ import { notFound } from 'boom';
 import * as expressRequestId from 'express-request-id';
 
 import errorHandler from './middleware/error-handler';
+import router from './router';
 
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(expressRequestId());
 app.get('/', (req: express.Request, res: express.Response) => {
   return res.json({ message: 'Yes, we are live' });
 });
+
+app.use('/api', router);
 
 // Generic catch all route
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) =>

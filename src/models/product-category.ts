@@ -26,4 +26,6 @@ export interface ProductCategoryModel extends Document, Auditable {
   description?: string;
 }
 
-export const productCategory = model<ProductCategoryModel>('ProductCategory', schema);
+const productCategory = model<ProductCategoryModel>('ProductCategory', schema);
+
+export default productCategory;
