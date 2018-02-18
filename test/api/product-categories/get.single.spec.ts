@@ -1,14 +1,14 @@
 import { expect } from 'chai';
-import app from '../../../src/app';
 import * as request from 'supertest';
+import app from '../../../src/app';
 
-import productCategory, { ProductCategoryModel } from '../../../src/models/product-category';
+import productCategory, { IProductCategoryModel } from '../../../src/models/product-category';
 import dbHelper from '../../db-helper';
 
 const RESOURCE_URI = 'product-categories';
 
 describe(`GET /api/${RESOURCE_URI}/:id`, () => {
-  let mobilePhones: ProductCategoryModel;
+  let mobilePhones: IProductCategoryModel;
 
   before(() => dbHelper.connect());
 

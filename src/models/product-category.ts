@@ -1,20 +1,20 @@
-import { Schema, Document, model, SchemaTimestampsConfig } from 'mongoose';
-import { Auditable } from './auditable';
+import { Document, model, Schema, SchemaTimestampsConfig } from 'mongoose';
+import { IAuditable } from './auditable';
 
 const schema = new Schema(
   {
     code: {
       type: String,
-      uppercase: true,
       unique: true,
+      uppercase: true,
     },
-    name: String,
     description: String,
+    name: String,
   },
   { timestamps: true },
 );
 
-export interface ProductCategoryModel extends Document, Auditable {
+export interface IProductCategoryModel extends Document, IAuditable {
 
   /**
    * The code of the category, unique (uppercase)
@@ -26,6 +26,6 @@ export interface ProductCategoryModel extends Document, Auditable {
   description?: string;
 }
 
-const productCategory = model<ProductCategoryModel>('ProductCategory', schema);
+const productCategory = model<IProductCategoryModel>('ProductCategory', schema);
 
 export default productCategory;

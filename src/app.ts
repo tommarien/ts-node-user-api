@@ -1,10 +1,9 @@
-import * as express from 'express';
 import { notFound } from 'boom';
+import * as express from 'express';
 import * as expressRequestId from 'express-request-id';
 
 import errorHandler from './middleware/error-handler';
 import router from './router';
-
 
 const app = express();
 

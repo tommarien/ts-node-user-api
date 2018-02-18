@@ -1,7 +1,7 @@
 import app from './app';
 import { runtime } from './config/config';
-import logFactory from './utility/log-factory';
 import mongoDb from './config/mongo-db';
+import logFactory from './utility/log-factory';
 
 const log = logFactory('server');
 const { port, env } = runtime;
