@@ -1,6 +1,5 @@
 import { notFound } from 'boom';
 import { NextFunction, Request, Response } from 'express';
-import * as Joi from 'Joi';
 import * as objectMapper from 'object-mapper';
 import * as productCategoryMapper from '../mapping/product-category-mapping';
 import verifyParamIsObjectId from '../middleware/verify-param-is-objectId';
