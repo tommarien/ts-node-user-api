@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { Types as MongooseTypes } from 'mongoose';
 import * as request from 'supertest';
 import app from '../../../src/app';
 
@@ -33,6 +34,35 @@ describe(`GET /api/${RESOURCE_URI}/:id`, () => {
 
   it('it sets content-type to application/json', () => {
     return act().expect('Content-Type', /application\/json/);
+  });
+
+  it('it returns the category as resource', () => {
+    return act().expect({
+      code: 'MOBPHO',
+      description: 'Everything concerning mobile phones',
+      id: mobilePhones.id,
+      name: 'Mobile Phones',
+    });
+  });
+
+  describe('HTTP 1.1 404 Not Found', () => {
+    function resourceNotFound(id: string) {
+      return {
+        error: 'Not Found',
+        message: `The 'ProductCategory' is not found (id:'${id}')`,
+        statusCode: 404,
+      };
+    }
+
+    it('it return the status if the category not exists', () => {
+      const nonExistantId = MongooseTypes.ObjectId().toString();
+      return act(nonExistantId).expect(404, resourceNotFound(nonExistantId));
+    });
+
+    it('it return the status if id is not an objectid', () => {
+      const notObjectIdId = 'test';
+      return act(notObjectIdId).expect(404, resourceNotFound(notObjectIdId));
+    });
   });
 
   after(() => dbHelper.disconnect());
