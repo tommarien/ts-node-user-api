@@ -8,7 +8,7 @@
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "migrate": "migrate-mongo --file ./migrate.config.js",
     "start": "node ./dist/server.js | bunyan -l warn",
-    "test": "mocha -r ts-node/register test/**/*.spec.ts"
+    "test": "mocha -r ts-node/register 'test/**/*.spec.ts'"
   },
   "repository": {
     "type": "git",
