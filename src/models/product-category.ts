@@ -1,4 +1,4 @@
-import { Document, model, Schema, SchemaTimestampsConfig, Types } from 'mongoose';
+import { Document, model, Schema, Types } from 'mongoose';
 import { IAuditable } from './auditable';
 
 const schema = new Schema(
