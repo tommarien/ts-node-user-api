@@ -1,4 +1,4 @@
-import { Document, model, Schema, SchemaTimestampsConfig } from 'mongoose';
+import { Document, model, Schema, SchemaTimestampsConfig, Types } from 'mongoose';
 import { IAuditable } from './auditable';
 
 const schema = new Schema(
@@ -15,7 +15,7 @@ const schema = new Schema(
 );
 
 export interface IProductCategoryModel extends Document, IAuditable {
-
+  _id: Types.ObjectId;
   /**
    * The code of the category, unique (uppercase)
    * @type {string}
