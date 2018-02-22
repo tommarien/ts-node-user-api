@@ -4,6 +4,10 @@ import * as ProductCategoryController from './controllers/product-category-contr
 const apiRouter = Router();
 
 apiRouter
+  .route('/product-categories')
+  .post(ProductCategoryController.post);
+
+apiRouter
   .route('/product-categories/:id')
   .get(ProductCategoryController.getById);
 

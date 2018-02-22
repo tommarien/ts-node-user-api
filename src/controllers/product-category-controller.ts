@@ -7,6 +7,23 @@ import { resourceNotFound } from '../utility/errors';
 
 const RESOURCE_NAME = 'ProductCategory';
 
+export const post = [
+  (req: Request, res: Response, next: NextFunction) => {
+    const category = new productCategory();
+    category.code = req.body.code;
+    category.name = req.body.name;
+    category.description = req.body.description;
+
+    return category
+      .save()
+      .then(() => {
+        const resource = productCategoryMapper.map(category);
+        res.status(201).json(resource);
+      })
+      .catch(err => next(err));
+  },
+];
+
 export const getById = [
   verifyParamIsObjectId('id', RESOURCE_NAME),
   (req: Request, res: Response, next: NextFunction) => {
