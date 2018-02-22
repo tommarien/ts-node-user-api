@@ -17,6 +17,6 @@ export class ObjectMapper implements IMapper {
   }
 
   public mapMany(sources: object[]): object[] {
-    return sources.map(source => this.map(source));
+    return sources.map((source) => this.map(source));
   }
 }

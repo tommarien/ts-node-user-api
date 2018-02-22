@@ -44,7 +44,6 @@ describe(`POST /api/${RESOURCE_URI}`, () => {
           .findOne()
           .exec()
           .then((storedCategory) => {
-            // tslint:disable-next-line:max-line-length
             const mappedCategory = JSON.parse(JSON.stringify(productCategoryMapper.map(storedCategory)));
             return expect(res).to.have.a.property('body').that.eql(mappedCategory);
           });

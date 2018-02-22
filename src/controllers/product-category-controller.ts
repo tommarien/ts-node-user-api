@@ -20,7 +20,7 @@ export const post = [
         const resource = productCategoryMapper.map(category);
         res.status(201).json(resource);
       })
-      .catch(err => next(err));
+      .catch((err) => next(err));
   },
 ];
 
@@ -39,5 +39,5 @@ export const getById = [
         const resource = productCategoryMapper.map(category);
         res.json(resource);
       })
-      .catch(err => next(err));
+      .catch((err) => next(err));
   }];
