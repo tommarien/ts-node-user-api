@@ -1,10 +1,11 @@
-import { expect } from 'chai';
 import { Types as MongooseTypes } from 'mongoose';
 import * as request from 'supertest';
 import app from '../../../src/app';
 
+import productCategoryMapper from '../../../src/mappers/product-category-mapper';
 import productCategory, { IProductCategoryModel } from '../../../src/models/product-category';
 import dbHelper from '../../db-helper';
+import * as productCategoryMother from '../../mothers/product-category-mother';
 
 const RESOURCE_URI = 'product-categories';
 
@@ -16,10 +17,7 @@ describe(`GET /api/${RESOURCE_URI}/:id`, () => {
   beforeEach(() => dbHelper.dropCollection(productCategory));
 
   beforeEach(() => {
-    mobilePhones = new productCategory();
-    mobilePhones.code = 'MOBPHO';
-    mobilePhones.name = 'Mobile Phones';
-    mobilePhones.description = 'Everything concerning mobile phones';
+    mobilePhones = productCategoryMother.mobilePhones();
     return mobilePhones.save();
   });
 
@@ -37,12 +35,10 @@ describe(`GET /api/${RESOURCE_URI}/:id`, () => {
   });
 
   it('it returns the category as resource', () => {
-    return act().expect({
-      code: 'MOBPHO',
-      description: 'Everything concerning mobile phones',
-      id: mobilePhones.id,
-      name: 'Mobile Phones',
-    });
+    const resource = JSON.parse(JSON.stringify(productCategoryMapper.map(mobilePhones)));
+
+    return act()
+      .expect(resource);
   });
 
   describe('HTTP 1.1 404 Not Found', () => {
