@@ -4,6 +4,7 @@ import app from '../../../src/app';
 import productCategoryMapper from '../../../src/mappers/product-category-mapper';
 import productCategory from '../../../src/models/product-category';
 import dbHelper from '../../db-helper';
+import * as productCategoryMother from '../../mothers/product-category-mother';
 
 const RESOURCE_URI = 'product-categories';
 
@@ -80,6 +81,28 @@ describe(`POST /api/${RESOURCE_URI}`, () => {
             .to.have.a.property('description')
             .that.eq(resource.description);
         });
+    });
+
+  });
+
+  describe('HTTP 1.1 409 Conflict', () => {
+    function conflict(code: string) {
+      return {
+        error: 'Conflict',
+        message: `The 'ProductCategory' already exists (code:'${code}')`,
+        statusCode: 409,
+      };
+    }
+
+    beforeEach(() => {
+      const mobilePhones = productCategoryMother.mobilePhones();
+      resource.code = mobilePhones.code;
+
+      return mobilePhones.save();
+    });
+
+    it('it return the status if the category already exists', () => {
+      return act().expect(409, conflict(resource.code));
     });
 
   });

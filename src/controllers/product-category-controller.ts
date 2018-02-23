@@ -1,9 +1,10 @@
-import { notFound } from 'boom';
+import { conflict, notFound } from 'boom';
 import { NextFunction, Request, Response } from 'express';
 import productCategoryMapper from '../mappers/product-category-mapper';
 import verifyParamIsObjectId from '../middleware/verify-param-is-objectId';
 import productCategory from '../models/product-category';
 import { resourceNotFound } from '../utility/errors';
+import { DUPLICATE_KEY } from '../utility/mongoErrors';
 
 const RESOURCE_NAME = 'ProductCategory';
 
@@ -20,7 +21,12 @@ export const post = [
         const resource = productCategoryMapper.map(category);
         res.status(201).json(resource);
       })
-      .catch((err) => next(err));
+      .catch((err) => {
+        if (err.code === DUPLICATE_KEY) {
+          return next(conflict(`The '${RESOURCE_NAME}' already exists (code:'${category.code}')`));
+        }
+        return next(err);
+      });
   },
 ];
 
