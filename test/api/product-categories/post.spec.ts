@@ -8,7 +8,7 @@ import dbHelper from '../../db-helper';
 const RESOURCE_URI = 'product-categories';
 
 describe(`POST /api/${RESOURCE_URI}`, () => {
-  let resource: object;
+  let resource: any;
 
   before(() => dbHelper.connect());
 
@@ -48,6 +48,40 @@ describe(`POST /api/${RESOURCE_URI}`, () => {
             return expect(res).to.have.a.property('body').that.eql(mappedCategory);
           });
       });
+  });
+
+  describe('persistance', () => {
+
+    it('it stores the code as uppercase', () => {
+      return act()
+        .then((res) => productCategory.findById(res.body.id).exec())
+        .then((category) => {
+          return expect(category)
+            .to.have.a.property('code')
+            .that.eq(resource.code.toUpperCase());
+        });
+    });
+
+    it('it stores the name', () => {
+      return act()
+        .then((res) => productCategory.findById(res.body.id).exec())
+        .then((category) => {
+          return expect(category)
+            .to.have.a.property('name')
+            .that.eq(resource.name);
+        });
+    });
+
+    it('it stores the description', () => {
+      return act()
+        .then((res) => productCategory.findById(res.body.id).exec())
+        .then((category) => {
+          return expect(category)
+            .to.have.a.property('description')
+            .that.eq(resource.description);
+        });
+    });
+
   });
 
   after(() => dbHelper.disconnect());
