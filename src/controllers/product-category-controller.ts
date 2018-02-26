@@ -1,14 +1,17 @@
 import { conflict, notFound } from 'boom';
 import { NextFunction, Request, Response } from 'express';
 import productCategoryMapper from '../mappers/product-category-mapper';
+import JoiValidate from '../middleware/joi-validate';
 import verifyParamIsObjectId from '../middleware/verify-param-is-objectId';
 import productCategory from '../models/product-category';
 import { resourceNotFound } from '../utility/errors';
 import { DUPLICATE_KEY } from '../utility/mongoErrors';
+import productCategoryValidationSchema from '../validation/product-category-validation-schema';
 
 const RESOURCE_NAME = 'ProductCategory';
 
 export const post = [
+  JoiValidate(productCategoryValidationSchema),
   (req: Request, res: Response, next: NextFunction) => {
     const category = new productCategory();
     category.code = req.body.code;
