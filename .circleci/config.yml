@@ -36,11 +36,8 @@ jobs:
       - run: mkdir ~/junit
 
       # run tests!
-      - run:
-          command: yarn test --reporter mocha-junit-reporter
-          environment:
-            MOCHA_FILE: junit/test-results.xml
-          when: always
+      - run: MOCHA_FILE=junit/test-results.xml yarn test --reporter mocha-junit-reporter
+
       - store_test_results:
           path: ~/junit
       - store_artifacts:
