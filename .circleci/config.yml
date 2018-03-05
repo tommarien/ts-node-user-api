@@ -36,7 +36,7 @@ jobs:
       - run: mkdir ~/junit
 
       # run tests!
-      - run: MOCHA_FILE=junit/test-results.xml yarn test --reporter mocha-junit-reporter
+      - run: MOCHA_FILE=~/junit/test-results.xml yarn test --reporter mocha-junit-reporter
 
       - store_test_results:
           path: ~/junit
