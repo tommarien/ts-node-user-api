@@ -33,5 +33,12 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: mkdir ~/junit
+
       # run tests!
-      - run: yarn test
+      - run: yarn test --reporter mocha-junit-reporter
+
+      - store_test_results:
+          path: ~/junit
+      - store_artifacts:
+          path: ~/junit
