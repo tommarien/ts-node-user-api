@@ -40,6 +40,7 @@
   "dependencies": {
     "boom": "^7.1.1",
     "bunyan": "^1.8.12",
+    "chai-things": "^0.2.0",
     "express": "^4.16.2",
     "express-request-id": "^1.4.0",
     "joi": "^13.1.2",

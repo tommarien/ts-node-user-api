@@ -1,4 +1,7 @@
-import { expect } from 'chai';
+import { expect, use } from 'chai';
+import * as chaiThings from 'chai-things';
+use(chaiThings);
+
 import * as request from 'supertest';
 import app from '../../../src/app';
 import productCategoryMapper from '../../../src/mappers/product-category-mapper';
@@ -105,6 +108,41 @@ describe(`POST /api/${RESOURCE_URI}`, () => {
       return act().expect(409, conflict(resource.code));
     });
 
+  });
+
+  describe('HTTP 1.1 400 Bad Request', () => {
+    it('it return the status if code is not provided', () => {
+      delete resource.code;
+      return act()
+        .expect(400)
+        .expect((res) => {
+          return expect(res.body)
+            .to.have.a.deep.property('data')
+            .contain.a.thing.with.property('message', '"code" is required');
+        });
+    });
+
+    it('it return the status if code is too long', () => {
+      resource.code = '012345678901234567890';
+      return act()
+        .expect(400)
+        .expect((res) => {
+          return expect(res.body)
+            .to.have.a.deep.property('data')
+            .contain.a.thing.with.property('message', '"code" length must be less than or equal to 20 characters long');
+        });
+    });
+
+    it('it return the status if name is not provided', () => {
+      delete resource.name;
+      return act()
+        .expect(400)
+        .expect((res) => {
+          return expect(res.body)
+            .to.have.a.deep.property('data')
+            .contain.a.thing.with.property('message', '"name" is required');
+        });
+    });
   });
 
   after(() => dbHelper.disconnect());
