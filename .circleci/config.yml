@@ -40,6 +40,7 @@ jobs:
           command: yarn test --reporter mocha-junit-reporter
           environment:
             MOCHA_FILE: junit/test-results.xml
+          when: always
       - store_test_results:
           path: ~/junit
       - store_artifacts:
