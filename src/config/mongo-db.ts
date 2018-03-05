@@ -11,10 +11,10 @@ const connect = () => {
     log.error({ err });
   });
 
-  log.debug('Connecting', { uri, poolSize });
+  log.debug('Connecting', { poolSize });
   return mongoose.connect(uri, { poolSize })
     .then((mongoosy) => {
-      log.info('Connected', { uri });
+      log.info('Connected');
       return mongoosy;
     })
     .catch(() => {
