@@ -11,6 +11,20 @@ const connect = () => {
     log.error({ err });
   });
 
+  if (log.debug()) {
+    mongoose.set('debug', (coll: string, method: string, query: any, doc: any, options: any) => {
+      const set = {
+        coll,
+        doc,
+        method,
+        options,
+        query,
+      };
+
+      log.debug({ dbQuery: set });
+    });
+  }
+
   log.debug('Connecting', { poolSize });
   return mongoose.connect(uri, { poolSize })
     .then((mongoosy) => {

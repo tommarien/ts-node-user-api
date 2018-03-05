@@ -1,7 +1,8 @@
 import { conflict, notFound } from 'boom';
 import { NextFunction, Request, Response } from 'express';
+import * as Joi from 'joi';
 import productCategoryMapper from '../mappers/product-category-mapper';
-import JoiValidate from '../middleware/joi-validate';
+import JoiValidate, { AcceptedPath } from '../middleware/joi-validate';
 import verifyParamIsObjectId from '../middleware/verify-param-is-objectId';
 import productCategory from '../models/product-category';
 import { resourceNotFound } from '../utility/errors';
@@ -50,3 +51,32 @@ export const getById = [
       })
       .catch((err) => next(err));
   }];
+
+export const list = [
+  JoiValidate({
+    limit: Joi.number().positive().default(25),
+    offset: Joi.number().min(0).default(0),
+  }, AcceptedPath.QUERY),
+  (req: Request, res: Response, next: NextFunction) => {
+    return productCategory
+      .paginate({}, {
+        lean: true,
+        limit: req.query.limit,
+        offset: req.query.offset,
+        sort: {
+          code: 1,
+        },
+      })
+      .then(({ docs, limit, offset, total }) => {
+        const items = productCategoryMapper.mapMany(docs);
+
+        res.json({
+          items,
+          limit,
+          offset,
+          total,
+        });
+      })
+      .catch(next);
+  },
+];

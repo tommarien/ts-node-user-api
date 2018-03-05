@@ -1,0 +1,116 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Typescript Node Api
+basePath: "/api"
+tags:
+  - name: ProductCategories
+paths:
+  /product-categories:
+    get:
+      summary: List all productCategories
+      tags:
+        - ProductCategories
+      parameters:
+        - name: offset
+          in: query
+          description: The first result to return
+          type: integer
+          default: 0
+        - name: limit
+          in: query
+          description: The amount of results to return
+          type: integer
+          default : 25
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-request-id:
+              description: The request identifier
+              type: string
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/ProductCategoryResource'
+              total:
+                type: integer
+                description: The total amount of records found
+              offset:
+                type: integer
+                description: The first result to return
+              limit:
+                type: integer
+                description: The amount of records to return
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+definitions:
+  ProductCategoryResource:
+    properties:
+      id:
+        type: string
+        example: 59de80da99e5f90280ee3e24
+        readonly: true
+      code:
+        type: string
+        example: MOBPHO
+      name:
+        type: string
+        example: Mobile Phones
+      description:
+        type: string
+        example: Everything concerning mobile phones
+    required:
+      - code
+      - name
+  ValidationResultItem:
+    properties:
+      message:
+        type: string
+        example: field is required
+      path:
+        type: array
+        example:
+          - body
+          - field
+        items:
+          type: string
+components:
+  responses:
+    BadRequest:
+      description: Bad Request
+      allOf:
+        - $ref: '#/components/schemas/StatusError'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/definitions/ValidationResultItem'
+    Unauthorized:
+      description: Unauthorized
+      schema:
+        $ref: '#/components/schemas/StatusError'
+    Forbidden:
+      description: Forbidden
+      schema:
+        $ref: '#/components/schemas/StatusError'
+  schemas:
+    StatusError:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+      required:
+        - statusCode
+        - error

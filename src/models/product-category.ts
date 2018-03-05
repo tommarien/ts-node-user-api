@@ -1,4 +1,5 @@
 import { Document, model, Schema, Types } from 'mongoose';
+import * as paginate from 'mongoose-paginate';
 import { IAuditable } from './auditable';
 
 const schema = new Schema(
@@ -25,6 +26,8 @@ export interface IProductCategoryModel extends Document, IAuditable {
   name: string;
   description?: string;
 }
+
+schema.plugin(paginate);
 
 const productCategory = model<IProductCategoryModel>('ProductCategory', schema);
 

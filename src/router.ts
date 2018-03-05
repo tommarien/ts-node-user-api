@@ -5,6 +5,7 @@ const apiRouter = Router();
 
 apiRouter
   .route('/product-categories')
+  .get(ProductCategoryController.list)
   .post(ProductCategoryController.post);
 
 apiRouter

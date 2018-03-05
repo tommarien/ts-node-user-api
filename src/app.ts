@@ -1,9 +1,12 @@
 import { notFound } from 'boom';
 import * as express from 'express';
 import * as expressRequestId from 'express-request-id';
+import * as swaggerUi from 'swagger-ui-express';
+import * as YamlJs from 'yamljs';
 
 import errorHandler from './middleware/error-handler';
 import router from './router';
+const swaggerDocument = YamlJs.load('swagger.yml');
 
 const app = express();
 
@@ -17,6 +20,8 @@ app.get('/', (req: express.Request, res: express.Response) => {
 });
 
 app.use('/api', router);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Generic catch all route
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) =>

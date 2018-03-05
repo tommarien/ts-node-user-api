@@ -65,6 +65,20 @@
     "@types/events" "*"
     "@types/node" "*"
 
+"@types/mongoose-paginate@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@types/mongoose-paginate/-/mongoose-paginate-5.0.6.tgz#0e354981e4071b38fefc816a38f9b9652a96a99b"
+  dependencies:
+    "@types/mongoose" "*"
+
+"@types/mongoose@*":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.0.5.tgz#080af4bee4da06ac55619fbe690646681dabea15"
+  dependencies:
+    "@types/events" "*"
+    "@types/mongodb" "*"
+    "@types/node" "*"
+
 "@types/mongoose@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.0.2.tgz#7fe0015bb473d70e33ac953cdc56d60a5fe2e3f9"
@@ -293,6 +307,10 @@ block-stream@*:
   resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
   dependencies:
     inherits "~2.0.0"
+
+bluebird@3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.0.5.tgz#2ff9d07c9b3edb29d6d280fe07528365e7ecd392"
 
 bluebird@3.5.0:
   version "3.5.0"
@@ -1685,6 +1703,12 @@ mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
 
+mongoose-paginate@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/mongoose-paginate/-/mongoose-paginate-5.0.3.tgz#d7ae49ed5bf64f1f7af7620ea865b67058c55371"
+  dependencies:
+    bluebird "3.0.5"
+
 mongoose@^5.0.6:
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.0.6.tgz#ce4ba0eaf83dd343dec266f733858fbbbfbbe7a7"
@@ -2471,6 +2495,10 @@ supports-color@^5.2.0:
   dependencies:
     has-flag "^3.0.0"
 
+swagger-ui-express@^2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-2.0.15.tgz#fba85a357b40c0d629e942537199987b8085587d"
+
 tar-pack@^3.4.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/tar-pack/-/tar-pack-3.4.1.tgz#e1dbc03a9b9d3ba07e896ad027317eb679a10a1f"
@@ -2773,6 +2801,13 @@ xml@^1.0.0:
 yallist@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
+
+yamljs@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/yamljs/-/yamljs-0.3.0.tgz#dc060bf267447b39f7304e9b2bfbe8b5a7ddb03b"
+  dependencies:
+    argparse "^1.0.7"
+    glob "^7.0.5"
 
 yn@^2.0.0:
   version "2.0.0"

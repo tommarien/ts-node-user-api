@@ -2,7 +2,7 @@ import { badRequest } from 'boom';
 import { NextFunction, Request, Response } from 'express';
 import * as Joi from 'joi';
 
-enum AcceptedPath {
+export enum AcceptedPath {
   BODY = 'body',
   PARAMS = 'params',
   QUERY = 'query',
