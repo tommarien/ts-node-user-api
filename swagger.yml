@@ -49,14 +49,38 @@ paths:
                 description: The amount of records to return
         '400':
           $ref: '#/components/responses/BadRequest'
-
+    post:
+      summary: Add a new productCategory
+      tags:
+        - ProductCategories
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            "$ref": "#/definitions/ProductCategoryResource"
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            x-request-id:
+              description: The request identifier
+              type: string
+          schema:
+            $ref: '#/definitions/ProductCategoryResource'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
 definitions:
   ProductCategoryResource:
     properties:
       id:
         type: string
         example: 59de80da99e5f90280ee3e24
-        readonly: true
+        readOnly: true
       code:
         type: string
         example: MOBPHO
@@ -93,6 +117,20 @@ components:
               type: array
               items:
                 $ref: '#/definitions/ValidationResultItem'
+      examples:
+        application/json:
+          statusCode: 400
+          error: Bad Request
+          message": Bad Request
+    Conflict:
+      description: Unauthorized
+      schema:
+        $ref: '#/components/schemas/StatusError'
+      examples:
+        application/json:
+          statusCode: 409
+          error: Conflict
+          message: The 'ProductCategory' already exists (code:'MOBPHO')
     Unauthorized:
       description: Unauthorized
       schema:
