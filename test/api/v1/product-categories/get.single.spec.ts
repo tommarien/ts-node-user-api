@@ -1,29 +1,29 @@
 import { Types as MongooseTypes } from 'mongoose';
 import * as request from 'supertest';
-import app from '../../../src/app';
+import app from '../../../../src/app';
 
-import productCategoryMapper from '../../../src/mappers/product-category-mapper';
-import productCategory, { IProductCategoryModel } from '../../../src/models/product-category';
-import dbHelper from '../../db-helper';
-import * as productCategoryMother from '../../mothers/product-category-mother';
+import productCategoryMapper from '../../../../src/mappers/product-category-mapper';
+import productCategory, { IProductCategoryModel } from '../../../../src/models/product-category';
+import dbHelper from '../../../db-helper';
+import * as productCategoryMother from '../../../mothers/product-category-mother';
 
 const RESOURCE_URI = 'product-categories';
 
-describe(`GET /api/${RESOURCE_URI}/:id`, () => {
+describe(`GET /api/v1/${RESOURCE_URI}/:id`, () => {
   let mobilePhones: IProductCategoryModel;
 
   before(() => dbHelper.connect());
 
-  beforeEach(() => dbHelper.dropCollection(productCategory));
+  before(() => dbHelper.dropCollection(productCategory));
 
-  beforeEach(() => {
+  before(() => {
     mobilePhones = productCategoryMother.mobilePhones();
     return mobilePhones.save();
   });
 
   function act(id: string = mobilePhones.id) {
     return request(app)
-      .get(`/api/${RESOURCE_URI}/:id`.replace(':id', id));
+      .get(`/api/v1/${RESOURCE_URI}/:id`.replace(':id', id));
   }
 
   it('it returns status 200', () => {

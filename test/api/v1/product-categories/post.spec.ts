@@ -3,15 +3,15 @@ import * as chaiThings from 'chai-things';
 use(chaiThings);
 
 import * as request from 'supertest';
-import app from '../../../src/app';
-import productCategoryMapper from '../../../src/mappers/product-category-mapper';
-import productCategory from '../../../src/models/product-category';
-import dbHelper from '../../db-helper';
-import * as productCategoryMother from '../../mothers/product-category-mother';
+import app from '../../../../src/app';
+import productCategoryMapper from '../../../../src/mappers/product-category-mapper';
+import productCategory from '../../../../src/models/product-category';
+import dbHelper from '../../../db-helper';
+import * as productCategoryMother from '../../../mothers/product-category-mother';
 
 const RESOURCE_URI = 'product-categories';
 
-describe(`POST /api/${RESOURCE_URI}`, () => {
+describe(`POST /api/v1/${RESOURCE_URI}`, () => {
   let resource: any;
 
   before(() => dbHelper.connect());
@@ -29,7 +29,7 @@ describe(`POST /api/${RESOURCE_URI}`, () => {
 
   function act(body: object = resource) {
     return request(app)
-      .post(`/api/${RESOURCE_URI}`)
+      .post(`/api/v1/${RESOURCE_URI}`)
       .send(body);
   }
 

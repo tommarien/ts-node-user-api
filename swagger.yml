@@ -10,7 +10,7 @@ consumes:
 produces:
 - application/json
 paths:
-  /product-categories:
+  /v1/product-categories:
     get:
       summary: Retrieve a list of product categories
       tags:
@@ -74,7 +74,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
         409:
           $ref: '#/components/responses/Conflict'
-  /product-categories/{id}:
+  /v1/product-categories/{id}:
     get:
       summary: Retrieve a single product category
       tags:
